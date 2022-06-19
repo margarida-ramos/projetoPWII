@@ -1,7 +1,7 @@
 {
   "name": "projetopwii",
   "version": "1.0.0",
-  "description": "",
+  "description": "Projeto para Programação Web II",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,7 +12,7 @@
     "url": "git+https://github.com/margarida-ramos/projetoPWII.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Margarida Ramos",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/margarida-ramos/projetoPWII/issues"
@@ -29,5 +29,8 @@
     "mysql2": "^2.3.3",
     "node": "^17.7.2",
     "sequelize": "^6.18.0"
+  },
+  "engines": {
+    "node": "17.7.2"
   }
 }
