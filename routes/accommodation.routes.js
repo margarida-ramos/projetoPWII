@@ -13,7 +13,8 @@ router.route('/')
 router.route('/:accomodationID/comment')
     .post(authController.verifyToken, authController.isUser, commentController.createComment)
 
-
+router.route('/:accommodationID')
+    .put(authController.verifyToken, controller.update)
 
 router.all('*', function (req, res) {
     res.status(404).json({ message: 'ACCOMMODATIONS: what????' });

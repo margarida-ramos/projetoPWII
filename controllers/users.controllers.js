@@ -5,32 +5,37 @@ const { Op } = require("sequelize");
 
 const bcrypt = require("bcryptjs");
 
-const create = async (req, res) => {
-    try {
-        let user = await Users.findOne({
-            where: {
-                email: req.body.email
-            },
-        })
-
-        if (user) {
-            return res.status(400).send(req.body.email + " already exist!!!!");
-        } else {
-            user = await Users.create({
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 6)
-            })
-
-            return res.json({ message: "User was registered successfully!" });
-
-        }
-
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+exports.updateUser = (req, res) => {
+    if (!req.body) {
+        res.status(400).json({ message: "Request body can not be empty!" });
+        return;
     }
+    if (req.loggedUserId != req.params.userID) {
+        res.status(404).json({ message: "Must be logged in with the user" });
+        return;
+    } else {
+        Users.findByPk(req.params.userID)
+            .then((user) => {
+                console.log(user)
+                if (user === null)
+                    res.status(404).json({
+                        message: `Not found!`,
+                    });
+                else {
+                    user
+                        .update(req.body, { where: { id: req.params.userID } })
+                        .then((result) => {
+                            res.status(200).json({
+                                message: `Updated successfully!`,
+                            });
+                        });
+                }
+            })
+            .catch((err) => {
+                res.status(500).json({
+                    message: `Error!`,
+                });
+            });
+    }
+
 };
-
-
-exports.create = create;
