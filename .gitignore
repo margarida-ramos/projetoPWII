@@ -39,6 +39,6 @@ Thumbs.db
 #Files#
 #######
 node_modules
-packages-lock.json
+package-lock.json
 
 .env

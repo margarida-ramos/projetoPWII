@@ -6,14 +6,15 @@ const sequelize = new Sequelize.Sequelize(db.DB, db.USER, db.PASSWORD, {
 })
 
 
-class Comments extends Model { }
+class OfferComments extends Model { }
 
-Comments.init({
+OfferComments.init({
+    title: DataTypes.STRING,
     comment: DataTypes.STRING
-}, { sequelize, timestamps: false, modelName: 'comment' })
+}, { sequelize, timestamps: false, modelName: 'offerComment' })
 
 sequelize.sync().then().catch(error => {
     console.log(error);
 })
 
-exports.Comments = Comments;
+exports.OfferComments = OfferComments;
